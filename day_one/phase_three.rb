@@ -10,5 +10,7 @@ books["Gravity Rainbow"] = :splendid
 books["The Deep End"] = :abysmal
 books["Living Colors"] = :mediocre
 
-puts books, "\n"
-puts books["Gravity Rainbow"]
+#puts books, "\n"
+#puts books["Gravity Rainbow"]
+
+puts books.keys
