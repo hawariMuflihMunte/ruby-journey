@@ -217,7 +217,7 @@ end
 
 a = 50
 
-if a = 100
+if a == 100
   puts "Expression is true, but a is now: #{a}"
 elsif a == 50
   puts "a is #{a}"
