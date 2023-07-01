@@ -19,3 +19,11 @@ books["Living Colors"] = :mediocre
 # The {0} is a block passed to the `Hash.new`
 # It sets the default value for the hash.
 ratings = Hash.new {0}
+
+books.values.each { |rate|
+  ratings[rate] += 1
+}
+
+#puts ratings
+
+5.times { print "Odelay!\n"}
