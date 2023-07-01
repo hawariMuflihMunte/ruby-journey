@@ -14,4 +14,5 @@ def tame(number_of_shrews)
   }
 end
 
-tame(2)
+#tame(2)
+tame 2
