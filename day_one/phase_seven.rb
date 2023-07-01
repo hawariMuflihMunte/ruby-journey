@@ -79,8 +79,3 @@ myapp.add_a_blurb(:very_happy, "Hello from Java")
 myapp.add_a_blurb(:anxious, "Hello from Python")
 myapp.add_a_blurb(:rad, "Hello from COBOL")
 puts myapp.show_timeline
-
-puts myapp.show_mood(0)
-puts myapp.show_mood(1)
-puts myapp.show_mood(2)
-puts myapp.show_mood(3)
