@@ -50,3 +50,10 @@ blurb1 = Blurb.new
 puts blurb1
 blurb1.content = "Today Mount Hood Was Stolen!"
 puts blurb1.content
+
+# Setting Blurb time and mood
+blurb1.time = Time.now
+blurb1.mood = :sick
+
+puts blurb1.time
+puts blurb1.mood
