@@ -188,4 +188,16 @@ def count_plays(hash_val, year)
     }.count
 end
 
-puts count_plays(get_shakey, 1591)
+#puts count_plays(get_shakey, 1591)
+
+def print_plays(hash_val, year_from, year_to)
+  hash_val["William Shakespeare"]
+    .select { |k, v|
+      year_from <= v["finished"] &&
+      year_to   >= v["finished"]
+    }.each { |k, v|
+      puts "#{v["title"].ljust(30)} #{v["finished"]}"
+    }
+end
+
+print_plays(get_shakey, 1600, 1605)
