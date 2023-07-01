@@ -26,4 +26,12 @@ books.values.each { |rate|
 
 #puts ratings
 
-5.times { print "Odelay!\n"}
+#5.times { print "Odelay!\n"}
+
+# The values that are received by the block are placed
+# in the variable name at the beginning of the block,
+# between two pipe symbol: |
+
+5.times { |time|
+  puts time
+}
