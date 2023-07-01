@@ -58,4 +58,6 @@ myapp = Blurbalizer.new("The Big Blurb")
 puts myapp.show_timeline
 myapp.add_a_blurb(:sick, "Hello from JavaScript")
 myapp.add_a_blurb(:very_happy, "Hello from Java")
+myapp.add_a_blurb(:anxious, "Hello from Python")
+myapp.add_a_blurb(:rad, "Hello from COBOL")
 puts myapp.show_timeline
