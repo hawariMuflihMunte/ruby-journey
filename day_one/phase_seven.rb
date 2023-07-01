@@ -28,6 +28,17 @@ class Blurb
     @content  = content[0..39]
     @mood     = mood
   end
+
+  def moodify
+    if @mood == :sad
+      return ":-("
+    elsif @mood == :happy
+      return ":-)"
+    end
+
+    # The default mood
+    ":-|"
+  end
 end
 
 class Blurbalizer
