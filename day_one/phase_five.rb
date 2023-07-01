@@ -233,8 +233,13 @@ end
 # that the function/method being used
 # is returning a boolean value.
 def hungry?(time_of_day_in_hours)
-  puts "Me hungry"
-  true
+  if (time_of_day_in_hours > 12)
+    puts "Me hungry"
+    true
+  else
+    puts "Me not hungry"
+    false
+  end
 end
 
 def eat_an(what)
