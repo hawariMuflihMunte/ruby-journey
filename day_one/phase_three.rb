@@ -13,4 +13,5 @@ books["Living Colors"] = :mediocre
 #puts books, "\n"
 #puts books["Gravity Rainbow"]
 
-puts books.keys
+# puts books.keys
+puts books.values
