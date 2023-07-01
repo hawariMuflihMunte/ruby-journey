@@ -87,6 +87,10 @@ class Blurb
   end
 end
 
-blurb1 = Blurb.new("happy", "Learning Ruby")
+# blurb1 = Blurb.new("happy", "Learning Ruby")
+# puts blurb1.time
 
-puts blurb1.time
+blurb2 = Blurb.new :confused, "I can not believe Mt. Hood was stolen!"
+puts "Time: #{blurb2.time}
+Mood: #{blurb2.mood}
+Content: #{blurb2.content}"
