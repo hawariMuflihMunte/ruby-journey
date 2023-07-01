@@ -23,5 +23,24 @@ for humans. In fact 'you made a real program'.
 
 =end
 
+# Class names always begin with a capital letter!
+
+=begin
+Equal to
+
+```js
+class Blurb {
+  constructor() {
+    this.content = "";
+    this.time = "";
+    this.mood = "";
+  }
+}
+```
+
+in JavaScript
+=end
+
 class Blurb
+  attr_accessor :content, :time, :mood
 end
