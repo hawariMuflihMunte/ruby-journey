@@ -20,3 +20,42 @@ Object variables are the same variables you're
 using for accessors, but 'inside' the object.
 (@time = Time.now)
 =end
+class Blurb
+  attr_accessor :content, :time, :mood
+
+  def initialize(mood, content = "")
+    @time     = Time.now
+    @content  = content[0..39]
+    @mood     = mood
+  end
+end
+
+class Blurbalizer
+  def initialize(title)
+    @title  = title
+    @blurbs = []
+    # A fresh clean array
+    # for sorting Blurbs
+  end
+
+  def add_a_blurb(mood, content)
+    # The << means add to the end of the array
+    @blurbs << Blurb.new(mood, content)
+  end
+
+  def show_timeline
+    puts "Blurbify: #{@title} has #{@blurbs.count} Blurbs"
+
+    @blurbs.sort_by { |t|
+      t.time
+    }.reverse.each { |t|
+      puts "#{t.content.ljust(40)} #{t.time}"
+    }
+  end
+end
+
+myapp = Blurbalizer.new("The Big Blurb")
+puts myapp.show_timeline
+myapp.add_a_blurb(:sick, "Hello from JavaScript")
+myapp.add_a_blurb(:very_happy, "Hello from Java")
+puts myapp.show_timeline
