@@ -44,3 +44,9 @@ in JavaScript
 class Blurb
   attr_accessor :content, :time, :mood
 end
+
+
+blurb1 = Blurb.new
+puts blurb1
+blurb1.content = "Today Mount Hood Was Stolen!"
+puts blurb1.content
