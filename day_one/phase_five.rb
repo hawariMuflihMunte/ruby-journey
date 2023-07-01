@@ -201,3 +201,8 @@ def print_plays(hash_val, year_from, year_to)
 end
 
 #print_plays(get_shakey, 1600, 1605)
+
+# If only I knew how to make a decision
+if 1 < 2
+  puts "It is true: 1 is less than 2"
+end
