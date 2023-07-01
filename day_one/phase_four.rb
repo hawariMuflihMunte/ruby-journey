@@ -18,3 +18,5 @@ end
 #tame(2)
 #tame 2
 puts tame(2)
+
+# def is used for defining a function or method (in class context)
