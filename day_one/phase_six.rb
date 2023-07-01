@@ -57,3 +57,36 @@ in JavaScript
 
 # puts blurb1.time
 # puts blurb1.mood
+
+=begin
+class Blurb {
+  constructor(mood, content = "") {
+    this.time = new Date();
+    this.content = content.slice(0, 40);
+    this.mood = mood
+  }
+}
+
+1. Class definition
+  * Ruby: `class Blurb`
+  * JS: `class Blurb`
+2. Attribute definition
+  * Ruby: `attr_accessor :content, :time, :mood`
+  * JS: by using `this` keyword
+3. Initializer/Constructor
+  * Ruby: `def initialize(mood, content = "")`
+  * JS: `constructor(mood, content = "")`
+=end
+class Blurb
+  attr_accessor :content, :time, :mood
+
+  def initialize(mood, content = "")
+    @time     = Time.now
+    @content  = content[0..39]
+    @mood     = mood
+  end
+end
+
+blurb1 = Blurb.new("happy", "Learning Ruby")
+
+puts blurb1.time
