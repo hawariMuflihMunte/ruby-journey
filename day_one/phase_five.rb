@@ -207,11 +207,18 @@ end
 #   puts "It is true: 1 is less than 2"
 # end
 
-status = true
+# status = true
 
-# if not <expr>
-unless status == false
-  puts "Hello"
-  status = false
+# # if not <expr>
+# unless status == false
+#   puts "Hello"
+#   status = false
+# end
+
+a = 0
+
+if a = 100
+  puts "Expression is true, but a is now: #{a}"
+else
+  puts "#{a} is not equal to 100"
 end
-
