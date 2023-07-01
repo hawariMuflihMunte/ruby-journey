@@ -215,10 +215,12 @@ end
 #   status = false
 # end
 
-a = 0
+a = 50
 
 if a = 100
   puts "Expression is true, but a is now: #{a}"
+elsif a == 50
+  puts "a is #{a}"
 else
   puts "#{a} is not equal to 100"
 end
