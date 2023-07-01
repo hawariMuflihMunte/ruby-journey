@@ -22,3 +22,6 @@ for humans. In fact 'you made a real program'.
 # IF-ELSIF-ELSE statement
 
 =end
+
+class Blurb
+end
