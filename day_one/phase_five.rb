@@ -176,3 +176,16 @@ get_shakey = {
 # filter_title = b["William Shakespeare"].each { |key, val|
 #   puts val["title"]
 # }
+
+def count_plays(hash_val, year)
+  b = hash_val
+
+  b["William Shakespeare"]
+    .select { |k, v|
+      v["finished"] == year
+    }.each { |key, val|
+      puts val["title"]
+    }.count
+end
+
+puts count_plays(get_shakey, 1591)
