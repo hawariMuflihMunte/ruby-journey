@@ -14,4 +14,8 @@ books["Living Colors"] = :mediocre
 #puts books["Gravity Rainbow"]
 
 # puts books.keys
-puts books.values
+# puts books.values
+
+# The {0} is a block passed to the `Hash.new`
+# It sets the default value for the hash.
+ratings = Hash.new {0}
