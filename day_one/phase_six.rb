@@ -41,19 +41,19 @@ class Blurb {
 in JavaScript
 =end
 
-class Blurb
-  attr_accessor :content, :time, :mood
-end
+# class Blurb
+#   attr_accessor :content, :time, :mood
+# end
 
 
-blurb1 = Blurb.new
-puts blurb1
-blurb1.content = "Today Mount Hood Was Stolen!"
-puts blurb1.content
+# blurb1 = Blurb.new
+# puts blurb1
+# blurb1.content = "Today Mount Hood Was Stolen!"
+# puts blurb1.content
 
-# Setting Blurb time and mood
-blurb1.time = Time.now
-blurb1.mood = :sick
+# # Setting Blurb time and mood
+# blurb1.time = Time.now
+# blurb1.mood = :sick
 
-puts blurb1.time
-puts blurb1.mood
+# puts blurb1.time
+# puts blurb1.mood
