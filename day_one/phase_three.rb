@@ -7,5 +7,8 @@ books = {
 # associated with the key (left side value)
 
 books["Gravity Rainbow"] = :splendid
+books["The Deep End"] = :abysmal
+books["Living Colors"] = :mediocre
 
-puts books
+puts books, "\n"
+puts books["Gravity Rainbow"]
