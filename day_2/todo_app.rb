@@ -53,12 +53,16 @@ class TodoApp
 
   def list_todos
     puts "\n===== Todo List ====="
-    @todos.each_with_index do |todo, index|
-      status = todo[:done] ? "[X]" : "[]"
-      puts "#{index + 1}. #{status} #{todo[:desciption]}"
+    if @todos.empty?
+      puts "No todos found."
+    else
+      @todos.each_with_index do |todo, index|
+        status = todo[:done] ? "[X]" : "[]"
+        puts "#{index + 1}. #{status} #{todo[:description]}"
+      end
     end
-    puts "No todos found." if @todos.empty?
   end
+
 end
 
 # Create an instance of the TodoApp and run it
