@@ -15,6 +15,8 @@ class TodoApp
       when 3
         list_todos
       when 4
+        delete_todo
+      when 5
         break
       else
         puts "Invalid choice. Please try again."
@@ -27,7 +29,8 @@ class TodoApp
     puts "1. Add a Todo"
     puts "2. Mark a Todo as Done"
     puts "3. List Todos"
-    puts "4. Exit"
+    puts "4. Delete a Todo"
+    puts "5. Exit"
     print "Enter your choice: "
   end
 
@@ -37,6 +40,18 @@ class TodoApp
 
     @todos << { description: description, done: false }
     puts "Todo added successfully!"
+  end
+
+  def delete_todo
+    list_todos
+    print "Enter the index of the Todo to delete: "
+    index = gets.chomp.to_i
+    if index >= 1 && index <= @todos.length
+      deleted_todo = @todos.delete_at(index - 1)
+      puts "Todo '#{deleted_todo[:description]}' deleted successfully!"
+    else
+      puts "Invalid index. Please try again."
+    end
   end
 
   def mark_as_done
