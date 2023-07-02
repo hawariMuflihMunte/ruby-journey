@@ -9,3 +9,9 @@ fruits = ["apple", "banana", "orange"]
 fruits.each do |fruit|
   puts fruit
 end
+
+# Iterating over a hash
+person = { name: 'John', age: 30, city: "New York" }
+person.each do |key, value|
+  puts "#{key}: #{value}"
+end
