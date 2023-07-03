@@ -8,6 +8,11 @@ exclusive range where the last integer is excluded.
 =end
 
 # Inclusive
-(3..5).each do |i|
+# (3..5).each do |i|
+#   puts i
+# end
+
+# Exclusive
+(3...7).each do |i|
   puts i
 end
