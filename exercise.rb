@@ -49,9 +49,9 @@ class DeckCard
     return if query.empty?
 
     @cards.each { |card|
-      if card[:name].downcase! == query.downcase!
-        card[:name] = name unless name.empty?
-        card[:rank] = rank unless rank.zero?
+      if card['name'].downcase == query.downcase
+        card['name'] = name unless name.empty?
+        card["rank"] = rank unless rank.zero?
       else
         puts "Not Found"
       end
@@ -62,17 +62,37 @@ class DeckCard
     return if query.empty?
 
     @cards.delete_if { |card|
-      card[:name].downcase! == query.downcase!
+      card['name'].downcase == query.downcase
     }
   end
 
   def list_cards
     @cards.each_with_index { |card, index|
-      playable = card[:playable] ? "Playable" : "Not Playable"
-      puts "[#{index + 1}] #{card[:name]}(#{card[:rank]}): #{playable}"
+      playable = card['playable?'] ? 'Playable' : 'Not Playable'
+      puts "[#{index + 1}] #{card['name']}(#{card['rank']}): #{playable}"
+    }
+  end
+
+  def show_card(query = "")
+    return if query.empty?
+
+    @cards.each { |card|
+      if card['name'].downcase == query.downcase
+        playable = card['playable?'] ? 'Playable' : 'Not Playable'
+        puts "#{card['name']}(#{card['rank']}): #{playable}"
+      end
     }
   end
 end
 
 card = DeckCard.new
+
+card.add_cards(players)
+
 puts card.card_name
+card.list_cards
+
+puts "\n====\n\n"
+
+card.show_card("Iqbal")
+
