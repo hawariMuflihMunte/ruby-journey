@@ -42,7 +42,7 @@ class Storage
     choice = ''
 
     while choice != 'exit' do
-      puts "# (#{@storage_name}) #"
+      puts "\n# (#{@storage_name}) #"
       puts ''
       puts '[1] Set Storage Name'
       puts '[2] Add Content'
@@ -67,7 +67,37 @@ class Storage
 
       # Add Content
       if choice.to_i == 2
+        puts 'Add content'
+        puts ''
+        puts 'Format:'
+        puts '{'
+        puts '  \'id\' => number'
+        puts '  \'title\' => string'
+        puts '  \'content\' => string'
+        puts '}'
+        puts ''
 
+        print 'id: '
+        id = gets.chomp.to_i
+        puts ''
+
+        print 'title: '
+        title = gets.chomp.to_s
+        puts ''
+
+        print 'content: '
+        content = gets.chomp.to_s
+        puts ''
+
+        new_content = {
+          'id' => id,
+          'title' => title,
+          'content' => content
+        }
+
+        add_content(new_content)
+
+        puts 'Content added successfully'
       end
 
       # Edit Content
