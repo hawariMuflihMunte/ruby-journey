@@ -40,6 +40,59 @@ class Storage
     }
   end
 
+  private def menu_storage_name
+    puts 'Set Storage Name'
+    puts ''
+
+    new_name = gets.chomp.to_s
+    return if new_name == ''
+
+    change_name(new_name)
+
+    puts 'Name changed successfully'
+  end
+
+  private def menu_add_content
+    puts 'Add content'
+    puts ''
+    puts 'Format:'
+    puts '{'
+    puts '  \'id\' => number # Autofill'
+    puts '  \'title\' => string'
+    puts '  \'content\' => string'
+    puts '}'
+    puts ''
+
+    print 'title: '
+    title = gets.chomp.to_s
+    puts ''
+
+    print 'content: '
+    content = gets.chomp.to_s
+    puts ''
+
+    id = SecureRandom.hex(3)
+    new_content = {
+      'id' => id,
+      'title' => title,
+      'content' => content
+    }
+
+    add_content(new_content)
+
+    puts 'Content added successfully'
+  end
+
+  private def menu_edit_content
+    if !@contents.empty?
+      @contents.each_with_index { |content, index|
+        puts "(#{index + 1}) #{content['title']}\n\"#{content['content']}\"\n"
+      }
+    else
+      puts 'No data found'
+    end
+  end
+
   def run
     choice = ''
 
@@ -56,62 +109,19 @@ class Storage
 
       # Set Storage Name
       if choice.to_i == 1
-        puts 'Set Storage Name'
-        puts ''
-
-        new_name = gets.chomp.to_s
-        return if new_name == ''
-
-        change_name(new_name)
-
-        puts 'Name changed successfully'
+        set_storage_name
       end
 
       # Add Content
       if choice.to_i == 2
-        puts 'Add content'
-        puts ''
-        puts 'Format:'
-        puts '{'
-        puts '  \'id\' => number # Autofill'
-        puts '  \'title\' => string'
-        puts '  \'content\' => string'
-        puts '}'
-        puts ''
-
-        print 'title: '
-        title = gets.chomp.to_s
-        puts ''
-
-        print 'content: '
-        content = gets.chomp.to_s
-        puts ''
-
-        id = SecureRandom.hex(3)
-        new_content = {
-          'id' => id,
-          'title' => title,
-          'content' => content
-        }
-
-        add_content(new_content)
-
-        puts 'Content added successfully'
+        menu_add_content
       end
 
       # Edit Content
       if choice.to_i == 3
-        if !@contents.empty?
-          @contents.each_with_index { |content, index|
-            puts "(#{index + 1}) #{content['title']}\n\"#{content['content']}\"\n"
-          }
-        else
-          puts 'No data found'
-        end
+        menu_edit_content
       end
-
     end
 
   end
-
 end
