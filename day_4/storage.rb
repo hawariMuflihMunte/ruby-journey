@@ -1,12 +1,14 @@
+require 'securerandom'
+
 class Storage
   attr_accessor :storage_name
 
   def initialize
-    @storage_name = "Storage"
+    @storage_name = 'Storage'
     @contents = []
   end
 
-  def change_name(name = "")
+  def change_name(name = '')
     return if name.empty?
 
     @storage_name = name
@@ -30,7 +32,7 @@ class Storage
     }
   end
 
-  def delete_content(query = "")
+  def delete_content(query = '')
     return if query.empty?
 
     @contents.delete_if { |content|
@@ -71,14 +73,10 @@ class Storage
         puts ''
         puts 'Format:'
         puts '{'
-        puts '  \'id\' => number'
+        puts '  \'id\' => number # Autofill'
         puts '  \'title\' => string'
         puts '  \'content\' => string'
         puts '}'
-        puts ''
-
-        print 'id: '
-        id = gets.chomp.to_i
         puts ''
 
         print 'title: '
@@ -89,6 +87,7 @@ class Storage
         content = gets.chomp.to_s
         puts ''
 
+        id = SecureRandom.hex(3)
         new_content = {
           'id' => id,
           'title' => title,
@@ -110,6 +109,9 @@ class Storage
           puts 'No data found'
         end
       end
+
     end
+
   end
+
 end
