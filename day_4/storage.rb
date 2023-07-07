@@ -14,18 +14,18 @@ class Storage
 
   def add_content(content = {})
     return if content.empty?
-    return if content
 
     @contents.push(content)
   end
 
-  def edit_content(query = '', changes = {})
+  def edit_content(query = '', new_title = '', new_content = '')
     return if query.empty?
     return if changes.empty?
 
     @contents.each { |content|
-      if content['name'].downcase == query.downcase
-        content['name'] = changes['name']
+      if content['title'].downcase == query.downcase
+        content['title'] = new_title unless new_title.empty?
+        content['content'] = new_content unless new_content.empty?
       end
     }
   end
@@ -34,7 +34,7 @@ class Storage
     return if query.empty?
 
     @contents.delete_if { |content|
-      content['name'].downcase == query.downcase
+      content['title'].downcase == query.downcase
     }
   end
 
@@ -102,7 +102,13 @@ class Storage
 
       # Edit Content
       if choice.to_i == 3
-
+        if !@contents.empty?
+          @contents.each_with_index { |content, index|
+            puts "(#{index + 1}) #{content['title']}\n\"#{content['content']}\"\n"
+          }
+        else
+          puts 'No data found'
+        end
       end
     end
   end
