@@ -8,19 +8,19 @@ class Storage
     @contents = []
   end
 
-  def change_name(name = '')
+  private def change_name(name = '')
     return if name.empty?
 
     @storage_name = name
   end
 
-  def add_content(content = {})
+  private def add_content(content = {})
     return if content.empty?
 
     @contents.push(content)
   end
 
-  def edit_content(query = '', new_title = '', new_content = '')
+  private def edit_content(query = '', new_title = '', new_content = '')
     return if query.empty?
     return if changes.empty?
 
@@ -32,7 +32,7 @@ class Storage
     }
   end
 
-  def delete_content(query = '')
+  private def delete_content(query = '')
     return if query.empty?
 
     @contents.delete_if { |content|
@@ -52,6 +52,16 @@ class Storage
     puts 'Name changed successfully'
   end
 
+  private def menu_list_contents
+    if !@contents.empty?
+      @contents.each_with_index { |content, index|
+        puts "[#{index + 1}] #{content['title']} (#{content['id']})\n#{content['content']}\n"
+      }
+    else
+      puts 'No data(s) found'
+    end
+  end
+
   private def menu_add_content
     puts 'Add content'
     puts ''
@@ -67,7 +77,7 @@ class Storage
     title_add = gets.chomp.to_s
     puts ''
 
-    print 'content (press Enter twice to finish):\n '
+    print "content (press Enter twice to finish):\n"
     content_add = ''
     loop do
       line = gets
@@ -90,7 +100,7 @@ class Storage
   private def menu_edit_content
     if !@contents.empty?
       @contents.each_with_index { |content, index|
-        puts "(#{index + 1}) #{content['title']}\n\"#{content['content']}\"\n"
+        puts "[#{index + 1}] #{content['title']} (#{content['id']})\n#{content['content']}\n"
       }
     else
       puts 'No data found'
@@ -103,9 +113,10 @@ class Storage
     while choice != 'exit' do
       puts "\n# (#{@storage_name}) #"
       puts ''
-      puts '[1] Set Storage Name'
-      puts '[2] Add Content'
-      puts '[3] Edit Content'
+      puts '[1] Change Storage Name'
+      puts '[2] Display Contents'
+      puts '[3] Add Content'
+      puts '[4] Edit Content'
 
       puts 'Type \'exit\' to exit'
       print "\n> "
@@ -116,13 +127,18 @@ class Storage
         set_storage_name
       end
 
-      # Add Content
+      # List Content
       if choice.to_i == 2
+        menu_list_contents
+      end
+
+      # Add Content
+      if choice.to_i == 3
         menu_add_content
       end
 
       # Edit Content
-      if choice.to_i == 3
+      if choice.to_i == 4
         menu_edit_content
       end
     end
