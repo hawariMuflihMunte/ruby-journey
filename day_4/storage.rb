@@ -64,18 +64,22 @@ class Storage
     puts ''
 
     print 'title: '
-    title = gets.chomp.to_s
+    title_add = gets.chomp.to_s
     puts ''
 
-    print 'content: '
-    content = gets.chomp.to_s
-    puts ''
+    print 'content (press Enter twice to finish):\n '
+    content_add = ''
+    loop do
+      line = gets
+      break if line.strip.empty?
+      content_add += line
+    end
 
     id = SecureRandom.hex(3)
     new_content = {
       'id' => id,
-      'title' => title,
-      'content' => content
+      'title' => title_add,
+      'content' => content_add
     }
 
     add_content(new_content)
