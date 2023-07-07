@@ -37,4 +37,43 @@ class Storage
       content['name'].downcase == query.downcase
     }
   end
+
+  def run
+    choice = ''
+
+    while choice != 'exit' do
+      puts "# (#{@storage_name}) #"
+      puts ''
+      puts '[1] Set Storage Name'
+      puts '[2] Add Content'
+      puts '[3] Edit Content'
+
+      puts 'Type \'exit\' to exit'
+      print "\n> "
+      choice = gets.chomp
+
+      # Set Storage Name
+      if choice.to_i == 1
+        puts 'Set Storage Name'
+        puts ''
+
+        new_name = gets.chomp.to_s
+        return if new_name == ''
+
+        change_name(new_name)
+
+        puts 'Name changed successfully'
+      end
+
+      # Add Content
+      if choice.to_i == 2
+
+      end
+
+      # Edit Content
+      if choice.to_i == 3
+
+      end
+    end
+  end
 end
