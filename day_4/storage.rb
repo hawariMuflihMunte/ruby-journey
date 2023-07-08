@@ -39,6 +39,23 @@ class Storage
     }
   end
 
+  private def display_content_list
+    @contents.each_with_index { |content, index|
+      puts "[#{index + 1}] #{content['title']} (#{content['id']})\n#{content['content']}\n"
+    }
+  end
+
+  private def multiline_input
+    content = ''
+    loop do
+      line = gets
+      break if line.strip.empty?
+      content += line
+    end
+
+    content
+  end
+
   private def menu_storage_name
     puts 'Set Storage Name'
     puts ''
