@@ -40,9 +40,13 @@ class Storage
   end
 
   private def display_content_list
-    @contents.each_with_index { |content, index|
-      puts "[#{index + 1}] #{content['title']} (#{content['id']})\n#{content['content']}\n"
-    }
+    if !@contents.empty?
+      @contents.each_with_index { |content, index|
+        puts "[#{index + 1}] #{content['title']} (#{content['id']})\n#{content['content']}\n"
+      }
+    else
+      puts 'No data'
+    end
   end
 
   private def multiline_input
@@ -50,10 +54,25 @@ class Storage
     loop do
       line = gets
       break if line.strip.empty?
+
       content += line
     end
 
-    content
+    content.chomp
+  end
+
+  private def edit_selected_content(index)
+    selected_content = @contents[index - 1]
+    puts "Editing content with index #{index}: #{selected_content['title']}"
+
+    print 'New title (press Enter to skip): '
+    new_title = gets.chomp
+
+    print "New content (press Enter twice to finish):\n"
+    new_content = multiline_input
+
+    edit_content(selected_content['title'], new_title, new_content)
+    puts 'Content updated successfully'
   end
 
   private def menu_storage_name
@@ -66,16 +85,6 @@ class Storage
     change_name(new_name)
 
     puts 'Name changed successfully'
-  end
-
-  private def menu_list_contents
-    if !@contents.empty?
-      @contents.each_with_index { |content, index|
-        puts "[#{index + 1}] #{content['title']} (#{content['id']})\n#{content['content']}\n"
-      }
-    else
-      puts 'No data(s) found'
-    end
   end
 
   private def menu_add_content
@@ -94,12 +103,7 @@ class Storage
     puts ''
 
     print "content (press Enter twice to finish):\n"
-    content_add = ''
-    loop do
-      line = gets
-      break if line.strip.empty?
-      content_add += line
-    end
+    content_add = multiline_input
 
     id = SecureRandom.hex(3)
     new_content = {
@@ -114,42 +118,28 @@ class Storage
   end
 
   private def menu_edit_content
-    if !@contents.empty?
-      @contents.each_with_index { |content, index|
-        puts "[#{index + 1}] #{content['title']} (#{content['id']})\n#{content['content']}\n"
+    loop do
+      break puts 'No data' if @contents.empty?
+      display_content_list
 
-        print "\nSelect an index > "
-        index = gets.chomp.to_i
+      print "\nSelect an index (or type 'exit' to return to main menu): "
+      input = gets.chomp
 
-        if index >= 1 && index <= @contents.length
-          selected_content = @contents[index - 1]
-          puts "Editing content with index #{index}: #{selected_content['title']}"
+      break if input.downcase == 'exit'
 
-          puts 'New title (press Enter to skip): '
-          new_title = gets.chomp.to_s
+      index = input.to_i
 
-          puts "New content (press Enter twice to finish):\n"
-          new_content = ''
-          loop do
-            line = gets
-            break if line.strip.empty?
-            new_content += line
-          end
+      break if index.zero?
 
-          new_content.chomp
-          edit_content(selected_content['title'], new_title, new_content)
-
-          puts 'Content updated successfully!'
-        else
-          puts 'Invalid index. Please try again.'
-        end
-      }
-    else
-      puts 'No data found'
+      if (1..@contents.length).cover?(index)
+        edit_selected_content(index)
+      else
+        puts 'Invalid index. Please try again.'
+      end
     end
   end
 
-  def run
+  public def run
     choice = ''
 
     while choice != 'exit' do
@@ -164,23 +154,21 @@ class Storage
       print "\n> "
       choice = gets.chomp
 
+      case choice
       # Set Storage Name
-      if choice.to_i == 1
+      when choice.to_i == 1
         menu_storage_name
-      end
 
       # List Content
-      if choice.to_i == 2
-        menu_list_contents
-      end
+      when choice.to_i == 2
+        display_content_list
 
       # Add Content
-      if choice.to_i == 3
+      when choice.to_i == 3
         menu_add_content
-      end
 
       # Edit Content
-      if choice.to_i == 4
+      when choice.to_i == 4
         menu_edit_content
       end
     end
