@@ -22,7 +22,6 @@ class Storage
 
   private def edit_content(query = '', new_title = '', new_content = '')
     return if query.empty?
-    return if changes.empty?
 
     @contents.each { |content|
       if content['title'].downcase == query.downcase
@@ -101,6 +100,32 @@ class Storage
     if !@contents.empty?
       @contents.each_with_index { |content, index|
         puts "[#{index + 1}] #{content['title']} (#{content['id']})\n#{content['content']}\n"
+
+        print "\nSelect an index > "
+        index = gets.chomp.to_i
+
+        if index >= 1 && index <= @contents.length
+          selected_content = @contents[index - 1]
+          puts "Editing content with index #{index}: #{selected_content['title']}"
+
+          puts 'New title (press Enter to skip): '
+          new_title = gets.chomp.to_s
+
+          puts "New content (press Enter twice to finish):\n"
+          new_content = ''
+          loop do
+            line = gets
+            break if line.strip.empty?
+            new_content += line
+          end
+
+          new_content.chomp
+          edit_content(selected_content['title'], new_title, new_content)
+
+          puts 'Content updated successfully!'
+        else
+          puts 'Invalid index. Please try again.'
+        end
       }
     else
       puts 'No data found'
@@ -124,7 +149,7 @@ class Storage
 
       # Set Storage Name
       if choice.to_i == 1
-        set_storage_name
+        menu_storage_name
       end
 
       # List Content
@@ -142,6 +167,6 @@ class Storage
         menu_edit_content
       end
     end
-
   end
+
 end
