@@ -9,4 +9,4 @@ def extra_curriculars(*clubs)
   }
 end
 
-extra_curriculars("chess club", "gymnastics", "anime club", "library services")
+extra_curriculars('chess club', 'gymnastics', 'anime club', 'library services')
