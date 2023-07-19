@@ -1,4 +1,4 @@
-# Ruby Hashed, Symbols, Values
+# Ruby Hashes, Symbols, Values
 
 # =>
 my_progress = {
