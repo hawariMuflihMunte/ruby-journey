@@ -5,8 +5,8 @@ a "proc" and a "lambda" can be called directly using
 the `.call` method.
 =end
 
-proc_test = Proc.new { puts "I am the proc method! "}
-lambda_test = lambda { puts "I am the lambda method! "}
+proc_test = proc { puts 'I am the proc method! ' }
+lambda_test = lambda -> { puts 'I am the lambda method! ' }
 
 proc_test.call # => I am the proc method!
 lambda_test.call # => I am the lambda method!
